@@ -72,29 +72,73 @@
 
 
 
-document.querySelector('#loginForm').addEventListener('submit', function (event) {
+// document.querySelector('#loginForm').addEventListener('submit', function (event) {
+//     event.preventDefault();
+
+//     const enteredUsername  = document.getElementById('username').value;
+//     const enterdedPasswor   = document.getElementById('password').value;
+
+//     const userData = JSON.parse(localStorage.getItem('user')) || [];
+    
+//     // Initialize a variable to check if a matching user is found
+//     let isMatchingUser = false;
+
+//     // Loop through user data to check for a match
+//     for (const user of userData) {
+//         if (user.name === enteredUsername && user.password === enterdedPasswor) {
+//             isMatchingUser = true;
+//             break; // Exit the loop once a match is found
+//         }
+//     }
+
+//     if (isMatchingUser) {
+//         // Login is successful
+//         window.location.href = 'index.html';
+//     } else {
+//         alert('Invalid login credentials. Please try again.');
+//     }
+// });
+
+
+
+
+
+
+
+
+const loginForm = document.getElementById('loginForm');
+
+loginForm.addEventListener('submit', function(event) {
     event.preventDefault();
 
-    const enteredUsername  = document.getElementById('username').value;
-    const enterdedPasswor   = document.getElementById('password').value;
+    const enteredUsername = document.getElementById('username').value;
+    const enteredPassword = document.getElementById('password').value;
 
-    const userData = JSON.parse(localStorage.getItem('user')) || [];
-    
-    // Initialize a variable to check if a matching user is found
-    let isMatchingUser = false;
+    // Retrieve user data from local storage
+    const storedUsers = JSON.parse(localStorage.getItem('user')) || [];
 
-    // Loop through user data to check for a match
-    for (const user of userData) {
-        if (user.name === enteredUsername && user.password === enterdedPasswor) {
-            isMatchingUser = true;
-            break; // Exit the loop once a match is found
-        }
-    }
+    const matchedUser = storedUsers.find(user => user.username === enteredUsername && user.password === enteredPassword); 
 
-    if (isMatchingUser) {
-        // Login is successful
-        window.location.href = 'index.html';
+    if (matchedUser) {
+        // let printname = document.getElementById('#userprint')
+        Swal.fire({
+            title: 'Login Successful!',
+            text: `Welcome, ${matchedUser.username}! Redirecting to your cart...`,
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500,
+            willClose: () => {
+                window.location.href = 'cart.html'; // Redirect after the alert is closed
+                
+                // printname.innerHTML= ` ${matchedUser.username}`
+
+            }
+        });
     } else {
-        alert('Invalid login credentials. Please try again.');
+        Swal.fire({
+            title: 'Login Failed!',
+            text: 'Please check your username and password.',
+            icon: 'error'
+        });
     }
 });

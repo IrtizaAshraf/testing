@@ -8,6 +8,61 @@ function goToHome() {
 
 
 
+// // Remove the '#' symbol from the getElementById argument
+// let printname = document.getElementById('userprint');
+
+// // Retrieve user data from local storage
+// const storedUsers = JSON.parse(localStorage.getItem('user')) || [];
+
+// console.log(storedUsers);
+
+// // Check if there are stored users
+// if (storedUsers.length > 0) {
+//     // Get the first user from the stored users
+//     const user = storedUsers[0];
+    
+//     // Set the innerHTML of the element
+//     printname.innerHTML = `Hi ${user.username}`;
+//     console.log(printname);
+// } else {
+//     // Handle the case when there are no stored users
+//     printname.innerHTML = 'No user found';
+// }
+
+
+
+const storedUsers = JSON.parse(localStorage.getItem('user')) || [];
+
+// console.log(storedUsers);
+
+// Check if there are stored users
+if (storedUsers.length > 0) {
+    storedUsers.forEach(user => {
+        // Access user properties and perform operations
+        const username = user.username;
+      //   console.log(username);
+        // Perform other operations with the username here
+        
+        // For example, you can create an element and append it to the document
+        const div = document.createElement('div');
+        div.textContent = `Username: ${username}`;
+        document.body.appendChild(div);
+        console.log(div);
+    });
+} else {
+    console.log('No stored users found.');
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 const div = document.querySelector('#add-Cart');
