@@ -8,7 +8,7 @@ function goToHome() {
 
 
 
-// // Remove the '#' symbol from the getElementById argument
+// Remove the '#' symbol from the getElementById argument
 // let printname = document.getElementById('userprint');
 
 // // Retrieve user data from local storage
@@ -32,7 +32,7 @@ function goToHome() {
 
 
 const storedUsers = JSON.parse(localStorage.getItem('user')) || [];
-
+let printname = document.getElementById('userprint');
 // console.log(storedUsers);
 
 // Check if there are stored users
@@ -40,14 +40,18 @@ if (storedUsers.length > 0) {
     storedUsers.forEach(user => {
         // Access user properties and perform operations
         const username = user.username;
-      //   console.log(username);
+        console.log(username);
         // Perform other operations with the username here
-        
+        printname.innerHTML = `Hi ${username}`;
+         console.log(printname);
         // For example, you can create an element and append it to the document
-        const div = document.createElement('div');
-        div.textContent = `Username: ${username}`;
-        document.body.appendChild(div);
-        console.log(div);
+        //   const div = document.createElement('div');
+        //   div.textContent = `Username: ${username}`;
+        //   document.body.appendChild(div);
+        //   console.log(div);
+        
+        //  printname.innerHTML = `Hi ${username}`;
+        //  console.log(printname);
     });
 } else {
     console.log('No stored users found.');

@@ -110,9 +110,10 @@ const loginForm = document.getElementById('loginForm');
 
 loginForm.addEventListener('submit', function(event) {
     event.preventDefault();
-
+    
     const enteredUsername = document.getElementById('username').value;
     const enteredPassword = document.getElementById('password').value;
+    const printname = document.getElementById('userprint');
 
     // Retrieve user data from local storage
     const storedUsers = JSON.parse(localStorage.getItem('user')) || [];
@@ -129,6 +130,8 @@ loginForm.addEventListener('submit', function(event) {
             timer: 1500,
             willClose: () => {
                 window.location.href = 'cart.html'; // Redirect after the alert is closed
+                printname.innerHTML = `<i class="fa-solid fa-user fa-beat-fade"></i> Hi ${matchedUser.username}`;
+                console.log(matchedUser.username);
                 
                 // printname.innerHTML= ` ${matchedUser.username}`
 
@@ -142,3 +145,29 @@ loginForm.addEventListener('submit', function(event) {
         });
     }
 });
+
+
+
+// script.js
+// const loginForm = document.getElementById('loginForm');
+
+// Check if there are stored users in local storage
+// const storedUsers = JSON.parse(localStorage.getItem('user')) || [];
+
+// loginForm.addEventListener('submit', function(event) {
+//     event.preventDefault();
+
+//     const username = event.target.username.value;
+//     const password = event.target.password.value;
+
+//     // Check if the entered username and password match any stored user
+//     const loggedInUser = storedUsers.find(user => user.username === username && user.password === password);
+
+//     if (loggedInUser) {
+//         // Set the innerHTML of the element with the logged-in user's name
+//         printname.innerHTML = `<i class="fa-solid fa-user fa-beat-fade"></i> Hi ${loggedInUser.username}`;
+//     } else {
+//         // Handle the case when the entered credentials are incorrect
+//         printname.innerHTML = 'Incorrect username or password';
+//     }
+// });
